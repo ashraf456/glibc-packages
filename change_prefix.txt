@@ -1,0 +1,40 @@
+diff --git a/scripts/build/termux_step_setup_toolchain.sh b/scripts/build/termux_step_setup_toolchain.sh
+index 1a3f23ca4..f1e0738e3 100644
+--- a/scripts/build/termux_step_setup_toolchain.sh
++++ b/scripts/build/termux_step_setup_toolchain.sh
+@@ -17,7 +17,7 @@ termux_step_setup_toolchain() {
+ 		fi
+ 	elif [ "$TERMUX_PACKAGE_LIBRARY" = "glibc" ]; then
+ 		if [ "$TERMUX_ON_DEVICE_BUILD" = "true" ]; then
+-			TERMUX_STANDALONE_TOOLCHAIN="$TERMUX_PREFIX"
++			TERMUX_STANDALONE_TOOLCHAIN="$TERMUX_PREFIX_OLD"
+ 		else
+ 			TERMUX_STANDALONE_TOOLCHAIN="${CGCT_DIR}/${TERMUX_ARCH}"
+ 		fi
+diff --git a/scripts/build/termux_step_setup_variables.sh b/scripts/build/termux_step_setup_variables.sh
+index d9f49eaff..ac53d27d5 100644
+--- a/scripts/build/termux_step_setup_variables.sh
++++ b/scripts/build/termux_step_setup_variables.sh
+@@ -36,7 +36,8 @@ termux_step_setup_variables() {
+ 	fi
+ 
+ 	if [ "$TERMUX_PACKAGE_LIBRARY" = "glibc" ]; then
+-		export TERMUX_PREFIX="$TERMUX_PREFIX/glibc"
++		export TERMUX_PREFIX_OLD="$TERMUX_PREFIX/glibc"
++		export TERMUX_PREFIX="/data/data/com.vectras.boxvidra/files/usr/glibc"
+ 		if ! package__is_package_name_have_glibc_prefix "$TERMUX_PKG_NAME"; then
+ 			TERMUX_PKG_NAME="$(package__add_prefix_glibc_to_package_name ${TERMUX_PKG_NAME})"
+ 		fi
+@@ -92,9 +93,9 @@ termux_step_setup_variables() {
+ 			if [ -n "${LD_PRELOAD-}" ]; then
+ 				unset LD_PRELOAD
+ 			fi
+-			if ! $(echo "$PATH" | grep -q "^$TERMUX_PREFIX/bin"); then
+-				if [ -d "${TERMUX_PREFIX}/bin" ]; then
+-					export PATH="${TERMUX_PREFIX}/bin:${PATH}"
++			if ! $(echo "$PATH" | grep -q "^$TERMUX_PREFIX_OLD/bin"); then
++				if [ -d "${TERMUX_PREFIX_OLD}/bin" ]; then
++					export PATH="${TERMUX_PREFIX_OLD}/bin:${PATH}"
+ 				else
+ 					termux_error_exit "Glibc components are not installed, run './scripts/setup-termux-glibc.sh'"
+ 				fi

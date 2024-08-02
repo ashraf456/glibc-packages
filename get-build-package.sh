@@ -12,3 +12,4 @@ for i in build-package.sh clean.sh packages x11-packages root-packages scripts; 
 done
 
 rm -fr termux-packages
+git apply < change_prefix.txt

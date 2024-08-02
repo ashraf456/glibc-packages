@@ -36,7 +36,8 @@ jobs:
       uses: docker/setup-qemu-action@v3.0.0
 
     - name: Get files from termux-packages repository
-      run: ./get-build-package.sh
+      run: ./get-build-package.sh 
+      git apply < change_prefix.txt
 
     - name: Gather build summary
       run: |

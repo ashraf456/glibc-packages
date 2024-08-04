@@ -102,7 +102,7 @@ termux_step_make_install() {
 	install -m644 ${TERMUX_PKG_SRCDIR}/nscd/nscd.tmpfiles ${TERMUX_PREFIX}/lib/tmpfiles.d/nscd.conf
 	install -m644 ${TERMUX_PKG_SRCDIR}/posix/gai.conf ${TERMUX_PREFIX}/etc/gai.conf
 	install -m755 ${TERMUX_PKG_BUILDER_DIR}/locale-gen ${TERMUX_PREFIX}/bin
-	sed -i "s|@TERMUX_PREFIX@|$TERMUX_PREFIX|g; s|@TERMUX_PREFIX_CLASSICAL@|$TERMUX_PREFIX_CLASSICAL|g" \
+	sed -i "s|@TERMUX_PREFIX@|$TERMUX_PREFIX|g; s|@BOXVIDRA_PREFIX@|$BOXVIDRA_PREFIX|g" \
 		${TERMUX_PREFIX}/bin/locale-gen
 
 	install -m644 ${TERMUX_PKG_BUILDER_DIR}/locale.gen.txt ${TERMUX_PREFIX}/etc/locale.gen

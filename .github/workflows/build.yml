@@ -189,6 +189,11 @@ jobs:
             TERMUX_BUILDER_IMAGE_NAME="ghcr.io/termux/package-builder-cgct" ./scripts/run-docker.sh ./build-package.sh -a ${{ matrix.target_arch }} --format pacman --library glibc $packages
           fi
         fi
+        -name: compressing builded package 
+        run: |
+        tar -czf /workspaces/glibc-pacakages/output/mesa.tar.xz /data/data/com.vectras.boxvidra/files/usr ./glibc
+        sleep 20 
+        cp /workspaces/glibc-pacakages/output/mesa.tar.xz ../
 
     - name: Generate build artifacts
       if: always()

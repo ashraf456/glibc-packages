@@ -86,7 +86,7 @@ termux_step_make() {
 	make -O
 	make info
 
-	elf/ld.so --library-path "$PWD" locale/localedef -c -f ${TERMUX_PKG_SRCDIR}/localedata/charmaps/UTF-8 -i ${TERMUX_PKG_SRCDIR}/localedata/locales/C ./C.UTF-8/
+	localedef -c -f ${TERMUX_PKG_SRCDIR}/localedata/charmaps/UTF-8 -i ${TERMUX_PKG_SRCDIR}/localedata/locales/C ./C.UTF-8/
 }
 
 termux_step_make_install() {

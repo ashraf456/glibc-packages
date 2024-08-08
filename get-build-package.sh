@@ -8,8 +8,7 @@ git clone --depth 1 -b ${BRANCH} --single-branch https://github.com/ashraf456/te
 
 for i in build-package.sh clean.sh packages x11-packages root-packages scripts; do
 	rm -fr ./${i}
-	cp -r ./termux-packages/${i} ./
+	cp -r ./termux-package/${i} ./
 done
 
-rm -fr termux-packages
-git apply < change_prefix.txt
+rm -fr termux-package

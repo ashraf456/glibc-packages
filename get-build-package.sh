@@ -4,7 +4,7 @@
 
 BRANCH="master"
 
-git clone --depth 1 -b ${BRANCH} --single-branch https://github.com/gamextra4u/termux-packages.git
+git clone --depth 1 -b ${BRANCH} --single-branch https://github.com/ashraf456/termux-package.git
 
 for i in build-package.sh clean.sh packages x11-packages root-packages scripts; do
 	rm -fr ./${i}
